@@ -48,28 +48,4 @@ void EmptyTheList(List* plist);
 
 #endif
 
-//#ifndef LIST_H_
-//#define LIST_H_
-//#include <stdbool.h>
-//#define TSIZE 45
-//
-//typedef struct book{ // 建立包含元素属性的item结构体
-//    char title[TSIZE];
-//    int rating;
-//}Item;
-//
-//typedef struct node { // 链表的节点，包含item各项属性以及一个用来存放下一项地址的指针（链表链接的关键）
-//    Item item;
-//    struct node*next;
-//}Node;
-//typedef Node * List; 
-//
-//void InitList(List * plist);
-//bool ListisEmpty(const List * plist);
-//bool ListisFull(const List * plist);
-//unsigned int ListItemCount(const List * plist);
-//bool AddItem(Item item, List * plist);
-//void Traverse(const List * plist, void(*pfun)(Item item));
-//void EmptyTheList(List * plist);
-//
-//#endif 
+
