@@ -1,28 +1,25 @@
-#inclde<stdio.h>
-#include<stdlib.h>
-#include<stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 #include "queue.h"
 
+	static void CopyToNode(Item item,Node*pnew);
+	static void CopyToItem(Node *pn,Item*pitem);
+	
 	void InitializeQueue(Queue *pq)
 	{
-		pq->front = pq->reat =NULL;
+		pq->front = pq->rear =NULL;
+		pq->items=0;   //忘记写了 
 	} 
 	
 	bool QueueIsEmpty(const Queue *pq)
 	{
-		if(pq->items==0)
-			retrun true;
-		else
-			return false;
+		return pq->items==0;
 	}
 	
 	bool QueueIsFull(const Queue*pq)
-	{
-		
-		if(pq->items==NULL)
-			retrun true;
-		else
-			return false;
+	{	
+		return pq->items==MAXQUEUE;		
 	}
 	
 	int QueueItemCount(const Queue *pq)
@@ -41,9 +38,8 @@
 		
 		if(pnew==NULL)
 		{
-			fprintf(stderr,"momery is full");
-			exit(1); 
-			break;
+			fprintf(stderr,"momery is full\n");
+			exit(EXIT_FAILURE); 
 		}
 		CopyToNode(item,pnew);
 		pnew->next =NULL;
@@ -57,7 +53,7 @@
 		{
 			pq->rear->next = pnew;
 		}
-		pq->next = pnew;
+		pq->rear = pnew;
 		pq->items++;
 		
 		return true;
@@ -70,9 +66,9 @@
 		if(QueueIsEmpty(pq))
 			return false;
 		
-		pt = pq->front;
-		CopyToNode(pq->front,pitem);
 		
+		CopyToItem(pq->front,pitem);           //原来 这行与下行相反 
+		pt = pq->front;
 		pq->front = pq->front->next;
 		free(pt);
 		pq->items--;
@@ -82,12 +78,20 @@
 		
 	}
 	
-	static void CopyToNode(Item item,Node*pnew)
+	void EmptyTheQueue(Queue *pq)
 	{
-		pnew->item=item;
+		Item dummy;
+		while(!QueueIsEmpty(pq))
+			DeQueue(&dummy,pq);
 	}
 	
-	static void CopyToItem(Node *pn,Item*pitem)
+	
+	static void CopyToNode(Item item,Node*pn)
 	{
-		*pitem = pn->item;
+		pn->item=item;
+	}
+	
+	static void CopyToItem(Node *pn,Item*pi)
+	{
+		*pi = pn->item;
 	}
