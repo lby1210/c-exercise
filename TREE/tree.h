@@ -8,16 +8,21 @@ typedef struct item{
 	char petkind[MAXSIZE];
 }Item;
 
-typedef struct trnode{
+typedef struct tnode{
 	Item item;
 	struct Tronde *lift;
 	struct Tronde *right;
-}Tronde;
+}Tnode;
 
 typedef struct tree{
-	Tronde * tool;
+	Tronde * root;
 	int size;
 }Tree;
+
+typedef struct pair{
+	Tnode *parents;
+	Tnode *child;
+}Pair;
 
 //¶¨Òåº¯Êý
 
@@ -31,7 +36,7 @@ int TreeItemCount(const Tree*ptree);
 
 bool AddItem(Item item,Tree* ptree);
 
-bool InTree(Item item,Tree* ptree);
+bool InTree(Item *item,Tree* ptree);
 
 bool DeleteItem(Item item,Tree* ptree);
 
