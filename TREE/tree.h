@@ -38,7 +38,7 @@ bool AddItem(Item item,Tree* ptree);
 
 bool InTree(Item *item,Tree* ptree);
 
-bool DeleteItem(Item item,Tree* ptree);
+bool DeleteItem(Item *item,Tree* ptree);
 
 bool Traverse(const Tree*ptree,void (*pfun)(Item item));
 
