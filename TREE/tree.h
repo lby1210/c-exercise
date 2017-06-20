@@ -10,7 +10,7 @@ typedef struct item{
 
 typedef struct tnode{
 	Item item;
-	struct Tronde *lift;
+	struct Tronde *left;
 	struct Tronde *right;
 }Tnode;
 

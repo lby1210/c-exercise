@@ -74,6 +74,58 @@ bool InTree(const Item* pi,const Tree* ptree)
 	return (SeekItem(pi,ptree).child ==NULL) ? false : true;
 }
 
+
+bool DeleteItem(const Item*pi,Tree * ptree)
+{
+	Pair look;
+	look = SeekItem(pi,ptree);
+	if(look.child==NULL)
+		return false;
+	if(look.parents==NULL)
+		DeleteNode(&ptree->root);
+	else if(look.parents->left == look.child)
+		DeleteNode(&look.parents->left);
+	else 
+		DeleteNode(&look.parents.right);
+		
+	ptree.size--;
+	
+	return true; 
+}
+
+/*遍历树*/
+void PreOrderTraverse(const Tree*ptree ,void(*pfun)(Item item))
+{
+	if(ptree !=NULL)
+		InOder(ptree->root,pfun); 
+}
+
+
+
+/* 清空树*/
+void DeleteAll(Tree* ptree)
+{
+	if(ptree!=NULL)
+		DeleteNodes(ptree->root);
+	ptree->root =NULL;
+	ptree->size =0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* 本文件私有函数*/
 
 /*              制造节点*/
@@ -170,4 +222,57 @@ static Pair SeekItem(const Item*pi,const Tree* ptree)
 	}
 	
 	return look;
+}
+
+/* 文件内部函数  删除树的节点*/
+static viod DeleteNode(Tnode **ptr)
+{
+	Tnode *temp;
+	if(*ptr->left==NULL)
+	{
+		temp = *ptr;
+		*ptr = (*ptr)->right;
+		free(temp); 
+	}
+	else if)(*ptr->right==NULL)
+	{
+		temp = *ptr;
+		*ptr = (*ptr)->left;
+		free(temp); 
+	}
+	else
+	{
+		for(temp=(*ptr)->left;temp->right!=NULL;temp = temp->right)
+			continue;
+		
+		temp->right = (*ptr)->right;
+		temp = *ptr;
+		*ptr=(*ptr)->left;
+		free(temp); 
+	}
+}
+
+/* 遍历树*/
+static void InOrder(const Trnode *root,void (*pfun)(Item item))
+{
+	if(root!=NULL)
+	{
+		InOrder(root->left,pfun);
+		(*pfun)(Item item);
+		InOrder(root->right,pfun);
+	}
+}
+
+
+/* 删除树的节点*/
+static void DeleteNodes(Tnode* root)
+{
+	Tnode *pright;
+	if(root!=NULL)
+	{
+		pright = root->right;
+		DeleteNodes(root->left);
+		free(root);
+		DeleteNodes(pright); 
+	}
 }
