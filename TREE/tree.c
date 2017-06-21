@@ -3,7 +3,28 @@
 #include<stdlib.h>
 #include "tree.h" 
 /* 函数定义部分*/
+ static Tnode *MakeNode(const Item *pi);
+ 
+ static void AddNode(Tnode *new_node,Tnode *root);
+ 
+ static void Toleft(Item *pi,Item *pr); 
 
+/* 在右树*/
+static void Toright(Item *pi,Item *pr);
+
+/* 查找是否有相同项*/
+static Pair SeekItem(const Item*pi,const Tree* ptree);
+
+/* 文件内部函数  删除树的节点*/
+static viod DeleteNode(Tnode **ptr);
+
+/* 遍历树*/
+static void InOrder(const Trnode *root,void (*pfun)(Item item));
+
+/* 删除树的节点*/
+static void DeleteNodes(Tnode* root);
+ 
+ 
 
 
 /* 函数实现*/
