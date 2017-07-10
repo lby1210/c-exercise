@@ -74,6 +74,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\GitHub;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -118,11 +119,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\GitHub\c-exercise\Queue ADT\queue.h" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\GitHub\c-exercise\Queue ADT\main.c" />
-    <ClCompile Include="..\..\..\..\GitHub\c-exercise\Queue ADT\queue.c" />
+    <ClInclude Include="..\..\queue.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\main.c" />
+    <ClCompile Include="..\..\queue.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

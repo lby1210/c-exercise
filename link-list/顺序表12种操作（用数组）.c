@@ -104,3 +104,15 @@
 		a[ListLengtj(L)]=NULL; 
 	} 
 	
+	ListInsert(List &L,int i,Elem &e)
+	{
+		//判断i是否在上限或下限
+		//判断表是否为空
+		
+		for(j=length(L);j>i;j++)
+		{
+			L.a[j+1] = L.a[j];
+		} 
+		
+		L.a[i] = *e;
+	}	
