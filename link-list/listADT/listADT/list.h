@@ -33,7 +33,8 @@ void DestoryList(List L);
 
 struct Node {
 	ElemType data;
-	struct Node *next;
+	struct Node *next,*prior;
+
 	
 };
 

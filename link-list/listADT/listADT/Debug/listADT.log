@@ -1,4 +1,4 @@
-﻿生成启动时间为 2017/7/6 6:46:35。
+﻿生成启动时间为 2017/7/15 22:24:01。
      1>项目“D:\GitHub\c-exercise\link-list\listADT\listADT\listADT.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          D:\vs2015\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TC /analyze- /errorReport:prompt main.c
@@ -11,4 +11,4 @@
 
 已成功生成。
 
-已用时间 00:00:01.66
+已用时间 00:00:00.62

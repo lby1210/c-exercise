@@ -5,33 +5,33 @@ List Init_List(void)
 	List head;
 	head = (List)malloc(sizeof(struct Node));
 	head->next = NULL;
+	head->prior = NULL;
 	return head;
 }
 
 void Insert(ElemType x, Position p, List L)
 {
-	if (p != NULL)
-	{
 		Position tmp;
 		tmp = malloc(sizeof(struct Node));
 		tmp->data = x;
-		tmp->next = p->next;
-		p->next = tmp;
-	}
-	else
-		printf("不存在结点");	
+		tmp->next = p;
+		tmp->prior = p->prior;
+		p->prior->next = tmp;
+		p->prior = tmp;	
 }
 
 void Delete(ElemType x,Position p, List L)
 {
 	Position tmpCell;
+	tmpCell = p;
 	if (L->next == NULL) {
 		printf("表为空");
 		exit(1);
 	}	
-
-	tmpCell = p->next;
-	p->next = tmpCell->next;
+	if (p->prior != NULL)
+		p->prior->next = p->next;
+	if(p->next!=NULL)
+		p->next->prior = p;
 	free(tmpCell);
 
 }
@@ -67,7 +67,7 @@ Position FindPrevious(ElemType x, List L)
 			return NULL;
 		}
 		else
-			return p;
+			return p->prior;
 	}
 }
 
@@ -77,11 +77,13 @@ void addNode(ElemType x, List L)
 	p = malloc(sizeof(struct Node));
 	p->data = x;
 	p->next = NULL;
+	p->prior = NULL;
 	
 	tmp = L;
 	while (tmp ->next!= NULL)
 		tmp= tmp->next;
 	tmp->next = p;
+	p->prior = tmp;
 }
 
 int IsEmpty(List L)
@@ -107,12 +109,13 @@ void printfList(List L)
 void DestoryList(List L)
 {
 	Position p,q;
-	p = L;
-	q = p->next;
+	p = L->next;
 	while (p != NULL)
 	{
-		p->next = q->next;
+		p->prior->next = p->next;
+		p->next->prior = p->prior;
+		q = p;
+		p = p->next;
 		free(q);
-		q = p->next;
 	}
 }
